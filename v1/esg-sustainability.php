@@ -6,29 +6,29 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>About Us | Balancing Carbon</title>
+    <title>ESG &amp; Sustainability | Balancing Carbon</title>
 
     <meta name="description"
-        content="Learn about Balancing Carbon and our approach to carbon intelligence, supplier intelligence, ESG readiness and sustainability reporting.">
+        content="ESG and Sustainability services from Balancing Carbon to help organisations prepare disclosures, strengthen reporting and build practical sustainability programmes.">
 
     <meta name="keywords"
-        content="about Balancing Carbon, carbon intelligence, supplier sustainability, ESG readiness, sustainability reporting, carbon accounting">
+        content="ESG sustainability, ESG reporting, sustainability reporting, ESG readiness, sustainability assessment, ESG disclosures, sustainability strategy">
 
     <meta name="author" content="Balancing Carbon">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#2d5730">
 
-    <link rel="canonical" href="https://www.balancingcarbon.com/about-us.php">
+    <link rel="canonical" href="https://www.balancingcarbon.com/esg-sustainability.php">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
 
-    <meta property="og:title" content="About Us | Balancing Carbon">
+    <meta property="og:title" content="ESG &amp; Sustainability | Balancing Carbon">
 
     <meta property="og:description"
-        content="Discover how Balancing Carbon helps organisations understand carbon emissions, supplier sustainability and ESG performance.">
+        content="Support for ESG readiness, sustainability reporting and performance communication designed for practical business progress.">
 
-    <meta property="og:url" content="https://www.balancingcarbon.com/about-us.php">
+    <meta property="og:url" content="https://www.balancingcarbon.com/esg-sustainability.php">
 
     <meta property="og:image" content="https://www.balancingcarbon.com/assets/images/social-preview.jpg">
 
@@ -37,10 +37,10 @@
     <!-- Twitter/X -->
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta name="twitter:title" content="About Us | Balancing Carbon">
+    <meta name="twitter:title" content="ESG &amp; Sustainability | Balancing Carbon">
 
     <meta name="twitter:description"
-        content="Carbon, supplier and ESG intelligence for meaningful sustainability action.">
+        content="ESG readiness, sustainability disclosures and reporting support for organisations building stronger sustainability programmes.">
 
     <meta name="twitter:image" content="https://www.balancingcarbon.com/assets/images/social-preview.jpg">
 
@@ -68,7 +68,7 @@
 
     <main>
         <!-- =============================================
-         ABOUT PAGE BANNER
+         ESG & SUSTAINABILITY BANNER
     ============================================== -->
 
         <section class="about-page-banner">
@@ -76,57 +76,58 @@
             <div class="about-banner-circle circle-two"></div>
 
             <div class="about-banner-container">
-                <h1>About Us</h1>
+                <h1>ESG &amp; Sustainability</h1>
 
                 <nav class="about-breadcrumb" aria-label="Breadcrumb">
                     <a href="index.php">Home</a>
 
                     <span aria-hidden="true">/</span>
 
-                    <span>About Us</span>
+                    <span>ESG &amp; Sustainability</span>
                 </nav>
             </div>
         </section>
 
         <!-- =============================================
-         ABOUT INTRODUCTION
+         SERVICE INTRODUCTION
     ============================================== -->
 
         <section class="about-introduction-section">
             <div class="about-introduction-container">
-                <!-- Content -->
                 <div class="about-introduction-content">
                     <div class="content-label">
                         <span></span>
-                        About Balancing Carbon
+                        ESG &amp; Sustainability
                     </div>
 
                     <h2>
-                        Turning Sustainability Information Into
-                        <em>Business Action.</em>
+                        Strengthen ESG Readiness.
+                        <em>Improve Sustainability Reporting.</em>
                     </h2>
 
                     <p class="about-leading-text">
-                        Balancing Carbon supports organisations in understanding and
-                        managing their carbon, supplier and ESG information.
+                        ESG and sustainability support helps organisations bring more
+                        structure to disclosures, performance communication and
+                        internal sustainability planning.
                     </p>
 
                     <p>
-                        Sustainability requirements can involve complex data,
-                        multiple stakeholders and changing customer expectations.
-                        We help bring structure and clarity to this information so
-                        organisations can measure their position, communicate
-                        progress and identify practical priorities.
+                        As stakeholder expectations continue to evolve, businesses
+                        need clearer ESG information, better reporting discipline and
+                        a practical way to organise sustainability priorities. We
+                        help translate these requirements into a more manageable and
+                        business-relevant approach.
                     </p>
 
                     <p>
-                        Our work covers carbon accounting, footprint reporting,
-                        supplier readiness, sustainability assessments, ESG
-                        reporting and performance dashboards.
+                        Our support can include ESG readiness reviews, sustainability
+                        assessments, reporting support, disclosure preparation,
+                        framework alignment and performance dashboard inputs tailored
+                        to organisational needs.
                     </p>
 
                     <a href="contact-us.php" class="about-primary-button">
-                        Start a Conversation
+                        Talk to Our Team
 
                         <svg viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M4 10H16"></path>
@@ -135,7 +136,6 @@
                     </a>
                 </div>
 
-                <!-- Visual composition -->
                 <div class="about-visual">
                     <div class="about-visual-main">
                         <div class="about-earth">
@@ -180,30 +180,31 @@
                     <div class="about-floating-card floating-carbon">
                         <span class="floating-icon">
                             <svg viewBox="0 0 24 24">
-                                <path d="M4 19V11"></path>
-                                <path d="M10 19V5"></path>
-                                <path d="M16 19V9"></path>
-                                <path d="M22 19V3"></path>
+                                <path d="M4 20C5 13 10 7 20 4"></path>
+                                <path d="M7 17C11 18 16 16 19 11"></path>
+                                <path d="M7 17C5 14 5 10 7 7C10 3 15 3 20 4"></path>
                             </svg>
                         </span>
 
                         <div>
-                            <strong>Carbon Intelligence</strong>
-                            <span>Measure and understand</span>
+                            <strong>ESG Readiness</strong>
+                            <span>Prepare and organise</span>
                         </div>
                     </div>
 
                     <div class="about-floating-card floating-esg">
                         <span class="floating-icon">
                             <svg viewBox="0 0 24 24">
-                                <path d="M4 20C5 13 10 7 20 4"></path>
-                                <path d="M7 17C11 18 16 16 19 11"></path>
+                                <path d="M7 3H17L21 7V21H7Z"></path>
+                                <path d="M17 3V7H21"></path>
+                                <path d="M10 12H18"></path>
+                                <path d="M10 16H18"></path>
                             </svg>
                         </span>
 
                         <div>
-                            <strong>ESG Readiness</strong>
-                            <span>Prepare and communicate</span>
+                            <strong>Reporting Support</strong>
+                            <span>Communicate with clarity</span>
                         </div>
                     </div>
                 </div>
@@ -211,7 +212,7 @@
         </section>
 
         <!-- =============================================
-         MISSION AND APPROACH
+         WHAT WE SUPPORT
     ============================================== -->
 
         <section class="about-purpose-section">
@@ -219,15 +220,16 @@
                 <div class="purpose-heading">
                     <div class="content-label centered-label">
                         <span></span>
-                        Our Purpose
+                        What We Support
                         <span></span>
                     </div>
 
-                    <h2>Clarity Across the Sustainability Journey</h2>
+                    <h2>ESG and Sustainability Across the Reporting Journey</h2>
 
                     <p>
-                        Our approach connects measurement, understanding and action
-                        across carbon emissions, supply chains and ESG performance.
+                        Support designed to help organisations assess readiness,
+                        improve sustainability communication and structure ongoing
+                        ESG reporting efforts.
                     </p>
                 </div>
 
@@ -237,17 +239,18 @@
 
                         <div class="purpose-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <circle cx="12" cy="12" r="9"></circle>
-                                <path d="M8 12L11 15L17 8"></path>
+                                <path d="M4 20C5 13 10 7 20 4"></path>
+                                <path d="M7 17C11 18 16 16 19 11"></path>
+                                <path d="M7 17C5 14 5 10 7 7C10 3 15 3 20 4"></path>
                             </svg>
                         </div>
 
-                        <h3>Our Mission</h3>
+                        <h3>ESG Readiness Reviews</h3>
 
                         <p>
-                            To help organisations make carbon and sustainability
-                            information clearer, more structured and more useful for
-                            decision-making.
+                            Assess current sustainability practices, information
+                            availability and reporting preparedness across key ESG
+                            topics.
                         </p>
                     </article>
 
@@ -256,18 +259,19 @@
 
                         <div class="purpose-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M4 20C5 13 10 7 20 4"></path>
-                                <path d="M7 17C11 18 16 16 19 11"></path>
-                                <path d="M7 17C5 14 5 10 7 7C10 3 15 3 20 4"></path>
+                                <path d="M7 3H17L21 7V21H7Z"></path>
+                                <path d="M17 3V7H21"></path>
+                                <path d="M10 12H18"></path>
+                                <path d="M10 16H18"></path>
                             </svg>
                         </div>
 
-                        <h3>Our Focus</h3>
+                        <h3>Disclosure Support</h3>
 
                         <p>
-                            To support practical progress across carbon accounting,
-                            supplier sustainability, ESG readiness and performance
-                            reporting.
+                            Support sustainability and ESG disclosures with better
+                            structure, clearer inputs and stronger reporting
+                            consistency.
                         </p>
                     </article>
 
@@ -276,16 +280,16 @@
 
                         <div class="purpose-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <circle cx="12" cy="12" r="9"></circle>
-                                <path d="M12 7V12L16 15"></path>
+                                <path d="M3 17L9 11L13 15L21 7"></path>
+                                <path d="M15 7H21V13"></path>
                             </svg>
                         </div>
 
-                        <h3>Our Approach</h3>
+                        <h3>Performance Improvement</h3>
 
                         <p>
-                            To understand each organisation’s requirements before
-                            developing a clear and relevant path forward.
+                            Identify practical priorities that can strengthen ESG
+                            performance communication and support ongoing progress.
                         </p>
                     </article>
                 </div>
@@ -293,7 +297,7 @@
         </section>
 
         <!-- =============================================
-         OUR PRINCIPLES
+         HOW WE APPROACH THE WORK
     ============================================== -->
 
         <section class="about-principles-section">
@@ -301,19 +305,18 @@
                 <div class="principles-content">
                     <div class="content-label">
                         <span></span>
-                        Our Principles
+                        Our Approach
                     </div>
 
-                    <h2>How We Approach Our Work</h2>
+                    <h2>Built for Better ESG Structure and Ongoing Progress</h2>
 
                     <p>
-                        Effective sustainability programmes require credible
-                        information, clear communication and actions relevant to the
-                        organisation.
+                        We help make ESG and sustainability requirements easier to
+                        organise, communicate and strengthen over time.
                     </p>
 
-                    <a href="services.php" class="about-text-link">
-                        Explore our services
+                    <a href="contact-us.php" class="about-text-link">
+                        Discuss your requirement
 
                         <svg viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M4 10H16"></path>
@@ -326,19 +329,18 @@
                     <article class="principle-item">
                         <span class="principle-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M4 19V11"></path>
-                                <path d="M10 19V5"></path>
-                                <path d="M16 19V9"></path>
-                                <path d="M22 19V3"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M8 12L11 15L17 8"></path>
                             </svg>
                         </span>
 
                         <div>
-                            <h3>Evidence-Led</h3>
+                            <h3>Current-State Review</h3>
 
                             <p>
-                                Decisions should be supported by organised and
-                                understandable information.
+                                Review existing sustainability activities, available
+                                data points and the reporting practices already in
+                                place.
                             </p>
                         </div>
                     </article>
@@ -353,11 +355,32 @@
                         </span>
 
                         <div>
-                            <h3>Business-Relevant</h3>
+                            <h3>Material Focus</h3>
 
                             <p>
-                                Sustainability priorities should reflect operational,
-                                customer and value-chain requirements.
+                                Help teams focus on the ESG topics, disclosures and
+                                actions most relevant to stakeholders and business
+                                context.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="principle-item">
+                        <span class="principle-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4 20C5 13 10 7 20 4"></path>
+                                <path d="M7 17C11 18 16 16 19 11"></path>
+                                <path d="M7 17C5 14 5 10 7 7C10 3 15 3 20 4"></path>
+                            </svg>
+                        </span>
+
+                        <div>
+                            <h3>Framework Alignment</h3>
+
+                            <p>
+                                Structure information in a way that better supports
+                                ESG expectations, sustainability narratives and
+                                disclosure preparation.
                             </p>
                         </div>
                     </article>
@@ -371,31 +394,12 @@
                         </span>
 
                         <div>
-                            <h3>Progress-Focused</h3>
+                            <h3>Action Planning</h3>
 
                             <p>
-                                Reporting should help organisations identify priorities
-                                and support measurable improvement.
-                            </p>
-                        </div>
-                    </article>
-
-                    <article class="principle-item">
-                        <span class="principle-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <circle cx="8" cy="8" r="3"></circle>
-                                <circle cx="17" cy="7" r="2.5"></circle>
-                                <path d="M3 20C3 15.5 5 13 8 13C11 13 13 15.5 13 20"></path>
-                                <path d="M14 13C18 12 21 14.5 21 19"></path>
-                            </svg>
-                        </span>
-
-                        <div>
-                            <h3>Collaborative</h3>
-
-                            <p>
-                                Meaningful sustainability progress requires engagement
-                                across teams, suppliers and stakeholders.
+                                Turn findings into practical next steps that support
+                                stronger ESG communication, governance and
+                                sustainability progress.
                             </p>
                         </div>
                     </article>
@@ -404,7 +408,7 @@
         </section>
 
         <!-- =============================================
-         CAPABILITIES
+         DELIVERABLES
     ============================================== -->
 
         <section class="about-capabilities-section">
@@ -412,72 +416,43 @@
                 <div class="capabilities-heading">
                     <div class="content-label centered-label">
                         <span></span>
-                        Our Capabilities
+                        Typical Deliverables
                         <span></span>
                     </div>
 
-                    <h2>Connected Sustainability Intelligence</h2>
+                    <h2>Outputs That Support ESG Reporting and Sustainability Action</h2>
 
                     <p>
-                        Three connected service areas designed to support
-                        measurement, assessment and reporting.
+                        Deliverables are shaped by reporting needs, stakeholder
+                        expectations and the maturity of your sustainability
+                        programme.
                     </p>
                 </div>
 
                 <div class="capabilities-grid">
-                    <a href="carbon-intelligence.php" class="capability-card">
+                    <article class="capability-card">
                         <span class="capability-number">01</span>
 
                         <div class="capability-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M4 19V11"></path>
-                                <path d="M10 19V5"></path>
-                                <path d="M16 19V9"></path>
-                                <path d="M22 19V3"></path>
+                                <path d="M7 3H17L21 7V21H7Z"></path>
+                                <path d="M17 3V7H21"></path>
+                                <path d="M10 12H18"></path>
+                                <path d="M10 16H18"></path>
                             </svg>
                         </div>
 
-                        <h3>Carbon Intelligence</h3>
+                        <h3>Readiness Assessments</h3>
 
                         <p>
-                            Scope accounting, carbon-footprint reporting and net-zero
-                            roadmaps.
+                            Structured reviews of current ESG and sustainability
+                            practices, available information and reporting
+                            preparedness.
                         </p>
+                    </article>
 
-                        <span class="capability-link">
-                            Discover service →
-
-                        </span>
-                    </a>
-
-                    <a href="supplier-intelligence.php" class="capability-card">
+                    <article class="capability-card">
                         <span class="capability-number">02</span>
-
-                        <div class="capability-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <circle cx="6" cy="7" r="3"></circle>
-                                <circle cx="18" cy="7" r="3"></circle>
-                                <circle cx="12" cy="18" r="3"></circle>
-                                <path d="M8.5 9L10.5 15"></path>
-                                <path d="M15.5 9L13.5 15"></path>
-                                <path d="M9 7H15"></path>
-                            </svg>
-                        </div>
-
-                        <h3>Supplier Intelligence</h3>
-
-                        <p>
-                            Supplier readiness, vendor assessments and customer
-                            reporting support.
-                        </p>
-
-                        <span class="capability-link">
-                            Discover service →
-                        </span>
-                    </a>
-
-                    <a href="esg-sustainability.php" class="capability-card">
-                        <span class="capability-number">03</span>
 
                         <div class="capability-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -487,23 +462,38 @@
                             </svg>
                         </div>
 
-                        <h3>ESG &amp; Sustainability</h3>
+                        <h3>ESG Reporting Insights</h3>
 
                         <p>
-                            ESG readiness, sustainability reporting, assessments and
-                            performance dashboards.
+                            Consolidated inputs and observations that support clearer
+                            sustainability reporting and stakeholder communication.
                         </p>
+                    </article>
 
-                        <span class="capability-link">
-                            Discover service →
-                        </span>
-                    </a>
+                    <article class="capability-card">
+                        <span class="capability-number">03</span>
+
+                        <div class="capability-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 17L9 11L13 15L21 7"></path>
+                                <path d="M15 7H21V13"></path>
+                            </svg>
+                        </div>
+
+                        <h3>Improvement Roadmaps</h3>
+
+                        <p>
+                            Practical recommendations that help organisations improve
+                            ESG readiness, reporting quality and sustainability
+                            progress.
+                        </p>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- =============================================
-         ABOUT CTA
+         SERVICE CTA
     ============================================== -->
 
         <section class="about-cta-section">
@@ -511,14 +501,14 @@
                 <div class="about-cta-content">
                     <div class="content-label about-light-label">
                         <span></span>
-                        Work With Us
+                        ESG &amp; Sustainability Support
                     </div>
 
-                    <h2>Ready to Strengthen Your Sustainability Journey?</h2>
+                    <h2>Need Help Strengthening ESG Readiness and Reporting?</h2>
 
                     <p>
-                        Tell us about your carbon, supplier or ESG requirements and
-                        start a conversation with Balancing Carbon.
+                        Speak with Balancing Carbon about ESG disclosures,
+                        sustainability reporting or practical programme development.
                     </p>
                 </div>
 

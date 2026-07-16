@@ -51,11 +51,7 @@
     <meta name="twitter:image:alt" content="Balancing Carbon sustainability solutions">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -566,108 +562,6 @@
         </div>
     </section>
 
-    <!-- ==================================================
-     OUR PROCESS
-================================================== -->
-
-    <section class="process-section">
-        <div class="process-container">
-            <div class="section-heading">
-                <div class="content-label centered-label">
-                    <span></span>
-                    How We Work
-                    <span></span>
-                </div>
-
-                <h2>A Clear Path From Data to Action</h2>
-
-                <p>
-                    Our structured approach helps you understand your current
-                    performance, identify priorities and build measurable progress.
-                </p>
-            </div>
-
-            <div class="process-grid">
-                <article class="process-card">
-                    <div class="process-number">01</div>
-
-                    <div class="process-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <circle cx="11" cy="11" r="7"></circle>
-                            <path d="M20 20L16 16"></path>
-                            <path d="M8 11H14"></path>
-                            <path d="M11 8V14"></path>
-                        </svg>
-                    </div>
-
-                    <h3>Discover</h3>
-
-                    <p>
-                        Understand your organisation, reporting requirements,
-                        stakeholders and sustainability goals.
-                    </p>
-                </article>
-
-                <article class="process-card">
-                    <div class="process-number">02</div>
-
-                    <div class="process-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M4 19V11"></path>
-                            <path d="M10 19V5"></path>
-                            <path d="M16 19V9"></path>
-                            <path d="M22 19V3"></path>
-                        </svg>
-                    </div>
-
-                    <h3>Measure</h3>
-
-                    <p>
-                        Collect and assess carbon, supplier and ESG data through a
-                        consistent measurement framework.
-                    </p>
-                </article>
-
-                <article class="process-card">
-                    <div class="process-number">03</div>
-
-                    <div class="process-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M3 17L9 11L13 15L21 7"></path>
-                            <path d="M15 7H21V13"></path>
-                        </svg>
-                    </div>
-
-                    <h3>Improve</h3>
-
-                    <p>
-                        Identify performance gaps, reduction opportunities and
-                        meaningful improvement priorities.
-                    </p>
-                </article>
-
-                <article class="process-card">
-                    <div class="process-number">04</div>
-
-                    <div class="process-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M5 3H19V21H5Z"></path>
-                            <path d="M9 8H15"></path>
-                            <path d="M9 12H15"></path>
-                            <path d="M9 16H13"></path>
-                        </svg>
-                    </div>
-
-                    <h3>Report</h3>
-
-                    <p>
-                        Communicate progress through clear reports, dashboards and
-                        stakeholder-ready disclosures.
-                    </p>
-                </article>
-            </div>
-        </div>
-    </section>
 
     <!-- ==================================================
      INDUSTRIES
@@ -771,6 +665,111 @@
             </div>
         </div>
     </section>
+
+    <!-- ==================================================
+     OUR PROCESS
+================================================== -->
+
+    <section class="process-section">
+        <div class="process-container">
+            <div class="section-heading">
+                <div class="content-label centered-label">
+                    <span></span>
+                    How We Work
+                    <span></span>
+                </div>
+
+                <h2>A Clear Path From Data to Action</h2>
+
+                <p>
+                    Our structured approach helps you understand your current
+                    performance, identify priorities and build measurable progress.
+                </p>
+            </div>
+
+            <div class="process-grid">
+                <article class="process-card">
+                    <div class="process-number">01</div>
+
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path d="M20 20L16 16"></path>
+                            <path d="M8 11H14"></path>
+                            <path d="M11 8V14"></path>
+                        </svg>
+                    </div>
+
+                    <h3>Discover</h3>
+
+                    <p>
+                        Understand your organisation, reporting requirements,
+                        stakeholders and sustainability goals.
+                    </p>
+                </article>
+
+                <article class="process-card">
+                    <div class="process-number">02</div>
+
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 19V11"></path>
+                            <path d="M10 19V5"></path>
+                            <path d="M16 19V9"></path>
+                            <path d="M22 19V3"></path>
+                        </svg>
+                    </div>
+
+                    <h3>Measure</h3>
+
+                    <p>
+                        Collect and assess carbon, supplier and ESG data through a
+                        consistent measurement framework.
+                    </p>
+                </article>
+
+                <article class="process-card">
+                    <div class="process-number">03</div>
+
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M3 17L9 11L13 15L21 7"></path>
+                            <path d="M15 7H21V13"></path>
+                        </svg>
+                    </div>
+
+                    <h3>Improve</h3>
+
+                    <p>
+                        Identify performance gaps, reduction opportunities and
+                        meaningful improvement priorities.
+                    </p>
+                </article>
+
+                <article class="process-card">
+                    <div class="process-number">04</div>
+
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 3H19V21H5Z"></path>
+                            <path d="M9 8H15"></path>
+                            <path d="M9 12H15"></path>
+                            <path d="M9 16H13"></path>
+                        </svg>
+                    </div>
+
+                    <h3>Report</h3>
+
+                    <p>
+                        Communicate progress through clear reports, dashboards and
+                        stakeholder-ready disclosures.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
 
 
     <!-- ==================================================

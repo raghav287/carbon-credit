@@ -76,6 +76,8 @@
             <div class="contact-banner-decoration decoration-two"></div>
 
             <div class="contact-banner-container">
+                <h1>Contact Us</h1>
+
                 <nav class="contact-breadcrumb" aria-label="Breadcrumb">
                     <a href="index.php">Home</a>
 
@@ -83,13 +85,6 @@
 
                     <span>Contact Us</span>
                 </nav>
-
-                <h1>Let’s Build a Sustainable Future Together.</h1>
-
-                <p>
-                    Tell us about your carbon, supplier or ESG requirements.
-                    Our team will connect with you to understand how we can help.
-                </p>
             </div>
         </section>
 

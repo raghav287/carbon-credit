@@ -125,6 +125,8 @@
             <div class="faq-banner-shape shape-two"></div>
 
             <div class="faq-banner-container">
+                <h1>FAQ</h1>
+
                 <nav class="faq-breadcrumb" aria-label="Breadcrumb">
                     <a href="index.php">Home</a>
 
@@ -132,14 +134,6 @@
 
                     <span>FAQ</span>
                 </nav>
-
-                <h1>Frequently Asked Questions</h1>
-
-                <p>
-                    Clear answers to common questions about carbon accounting,
-                    supplier intelligence, ESG readiness and sustainability
-                    reporting.
-                </p>
             </div>
         </section>
 
