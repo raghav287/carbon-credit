@@ -1,5 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `carbon` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `carbon`;
+
 
 CREATE TABLE IF NOT EXISTS `admin_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

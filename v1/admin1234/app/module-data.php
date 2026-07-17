@@ -60,6 +60,27 @@ function tryFetchRows(?\mysqli $connection, string $sql): array
     return $rows;
 }
 
+function getTableColumns(?\mysqli $connection, string $table): array
+{
+    if ($connection === null) {
+        return [];
+    }
+
+    try {
+        $safeTable = str_replace("`", "``", $table);
+        $result = $connection->query("SHOW COLUMNS FROM `{$safeTable}`");
+        $columns = [];
+        while ($row = $result->fetch_assoc()) {
+            $columns[$row["Field"]] = true;
+        }
+        $result->free();
+        return $columns;
+    } catch (\mysqli_sql_exception $e) {
+        error_log("Column lookup failed for {$table}: {$e->getMessage()}");
+        return [];
+    }
+}
+
 function getListingItems(): array
 {
     $rows = tryFetchRows(
@@ -363,9 +384,23 @@ function getDashboardMetricsFallback(): array
 
 function getInquiries(): array
 {
+    $connection = getModuleConnection();
+    $columns = getTableColumns($connection, "inquiries");
+    if ($columns === []) {
+        return [];
+    }
+
+    $emailSelect = isset($columns["email"]) ? "`email`" : "'' AS `email`";
+    $mobileSelect = isset($columns["mobile"])
+        ? "`mobile`"
+        : (isset($columns["phone"]) ? "`phone` AS `mobile`" : "'' AS `mobile`");
+    $messageSelect = isset($columns["message"]) ? "`message`" : "'' AS `message`";
+    $createdSelect = isset($columns["created_at"]) ? "`created_at`" : "NULL AS `created_at`";
+    $orderBy = isset($columns["created_at"]) ? "`created_at` DESC" : "`id` DESC";
+
     $rows = tryFetchRows(
-        getModuleConnection(),
-        "SELECT id, name, email, mobile, message, created_at FROM inquiries ORDER BY created_at DESC",
+        $connection,
+        "SELECT `id`, `name`, {$emailSelect}, {$mobileSelect}, {$messageSelect}, {$createdSelect} FROM `inquiries` ORDER BY {$orderBy}",
     );
     return $rows !== [] ? $rows : [];
 }
