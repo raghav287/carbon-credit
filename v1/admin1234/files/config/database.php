@@ -5,7 +5,7 @@ declare(strict_types=1);
 $host = getenv("DB_HOST") ?: "localhost";
 $user = getenv("DB_USER") ?: "root";
 $pass = getenv("DB_PASS") !== false ? getenv("DB_PASS") : "";
-$db = getenv("DB_NAME") ?: "tavix";
+$db = getenv("DB_NAME") ?: "carbon";
 $port = (int) (getenv("DB_PORT") ?: 3306);
 
 /**

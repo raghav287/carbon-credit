@@ -7,10 +7,16 @@ $siteMetaDescription =
 $siteMetaKeywords =
     $siteSettings["keywords"] ??
     "admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.";
+$savedFavicon = ltrim($siteSettings["favicon"] ?? "", "/");
+$savedFaviconPath = $savedFavicon !== "" ? ASSETS_PATH . "/" . $savedFavicon : "";
 $faviconPath = ASSETS_PATH . "/favicon.png";
-$faviconUrl = is_file($faviconPath)
-    ? asset_url("favicon.png") . "?v=" . (filemtime($faviconPath) ?: time())
-    : site_logo_href(true, $siteSettings);
+if ($savedFaviconPath !== "" && is_file($savedFaviconPath)) {
+    $faviconUrl = asset_url($savedFavicon) . "?v=" . (filemtime($savedFaviconPath) ?: time());
+} elseif (is_file($faviconPath)) {
+    $faviconUrl = asset_url("favicon.png") . "?v=" . (filemtime($faviconPath) ?: time());
+} else {
+    $faviconUrl = site_logo_href(true, $siteSettings);
+}
 ?>
 <!doctype html>
 <html lang="en" dir="ltr">

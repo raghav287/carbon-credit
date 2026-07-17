@@ -18,8 +18,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sash_panel`
+-- Database: `carbon`
 --
+
+CREATE DATABASE IF NOT EXISTS `carbon` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `carbon`;
 
 -- --------------------------------------------------------
 
@@ -147,11 +150,9 @@ ALTER TABLE `profiles`
 CREATE TABLE `inquiries` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `service` varchar(100) NOT NULL,
-  `address` text NOT NULL,
-  `event_date` date NOT NULL,
-  `message` text,
+  `email` varchar(150) NOT NULL,
+  `mobile` varchar(50) NOT NULL,
+  `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

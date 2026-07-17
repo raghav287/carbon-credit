@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 // Allow configuration via environment variables for portability across hosts.
 $host = getenv("DB_HOST") ?: "localhost";
-$user = getenv("DB_USER") ?: "u225176002_tavix_2010";
-$pass = getenv("DB_PASS") ?: "~4Nkk@UhJ2~h";
-$db = getenv("DB_NAME") ?: "u225176002_tavix_2010";
+$user = getenv("DB_USER") ?: "root";
+$pass = getenv("DB_PASS") !== false ? getenv("DB_PASS") : "";
+$db = getenv("DB_NAME") ?: "carbon";
 $port = (int) (getenv("DB_PORT") ?: 3306);
 
 /**

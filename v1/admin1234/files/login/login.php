@@ -5,7 +5,7 @@ require_once APP_ROOT . "/app/auth.php";
 error_log("login.php loaded - Request method: " . $_SERVER["REQUEST_METHOD"]);
 
 if (isAdminLoggedIn()) {
-    header("Location: " . file_url("dashboard"));
+    header("Location: " . file_url("dashboard/dashboard.php"));
     exit();
 }
 
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } elseif (!attemptAdminLogin($identifier, $password)) {
         $errors[] = "Invalid username/email or password.";
     } else {
-        header("Location: " . file_url("dashboard"));
+        header("Location: " . file_url("dashboard/dashboard.php"));
         exit();
     }
 }

@@ -1,34 +1,12 @@
-# ==============================================
-# ADMIN .htaccess FOR LIVE SERVER (ROOT DOMAIN)
-# https://www.tavixevents.com/admin/
-# ==============================================
 Options -Indexes -MultiViews
-DirectorySlash Off
 
 RewriteEngine On
-RewriteBase /admin/
 
 # 1) Serve existing files as-is
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ - [L]
 
-# 2a) /files/slug -> files/slug/slug.php
-RewriteCond %{DOCUMENT_ROOT}/admin/files/$1/$1.php -f
-RewriteRule ^files/([^/]+)/?$ files/$1/$1.php [L,QSA]
-
-# 2b) /slug -> files/slug/slug.php
-RewriteCond %{DOCUMENT_ROOT}/admin/files/$1/$1.php -f
-RewriteRule ^([^/]+)/?$ files/$1/$1.php [L,QSA]
-
-# 3a) /files/slug/sub -> files/slug/sub.php
-RewriteCond %{DOCUMENT_ROOT}/admin/files/$1/$2.php -f
-RewriteRule ^files/([^/]+)/([^/]+)/?$ files/$1/$2.php [L,QSA]
-
-# 3b) /slug/sub -> files/slug/sub.php
-RewriteCond %{DOCUMENT_ROOT}/admin/files/$1/$2.php -f
-RewriteRule ^([^/]+)/([^/]+)/?$ files/$1/$2.php [L,QSA]
-
-# 4) Allow extensionless access to any .php in place (same-path)
+# Allow extensionless access to any .php in place.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f

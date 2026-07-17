@@ -41,7 +41,7 @@
                 </li>
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="<?= file_url(
-                        "dashboard",
+                        "dashboard/dashboard.php",
                     ) ?>">
                         <i class="side-menu__icon fe fe-home"></i>
                         <span class="side-menu__label">Dashboard</span>
@@ -54,7 +54,7 @@
 
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="<?= file_url(
-                        "list",
+                        "list/list.php",
                     ) ?>">
                         <i class="side-menu__icon fe fe-list"></i>
                         <span class="side-menu__label">Listings</span>
@@ -63,7 +63,7 @@
 
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="<?= file_url(
-                        "inquiries",
+                        "inquiries/inquiries.php",
                     ) ?>">
                         <i class="side-menu__icon fe fe-message-square"></i>
                         <span class="side-menu__label">Inquiries</span>
@@ -112,7 +112,7 @@
 
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="<?= file_url(
-                        "settings",
+                        "settings/settings.php",
                     ) ?>">
                         <i class="side-menu__icon fe fe-settings"></i>
                         <span class="side-menu__label">Settings</span>

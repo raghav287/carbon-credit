@@ -38,7 +38,7 @@ include LAYOUT_PATH . "/head.php";
                             <div>
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="<?= file_url(
-                                        "dashboard/dashboard",
+                                        "dashboard/dashboard.php",
                                     ) ?>">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Inquiries</li>
                                 </ol>
@@ -60,7 +60,7 @@ include LAYOUT_PATH . "/head.php";
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header d-flex justify-content-between">
-                                        <h3 class="card-title">Event Inquiries</h3>
+                                        <h3 class="card-title">Contact Form Submissions</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -68,10 +68,8 @@ include LAYOUT_PATH . "/head.php";
                                                 <thead>
                                                     <tr>
                                                         <th class="border-bottom-0">Name</th>
-                                                        <th class="border-bottom-0">Phone</th>
-                                                        <th class="border-bottom-0">Service</th>
-                                                        <th class="border-bottom-0">Event Date</th>
-                                                        <th class="border-bottom-0">Address</th>
+                                                        <th class="border-bottom-0">Email ID</th>
+                                                        <th class="border-bottom-0">Mobile Number</th>
                                                         <th class="border-bottom-0">Message</th>
                                                         <th class="border-bottom-0">Date Submitted</th>
                                                         <th class="border-bottom-0">Actions</th>
@@ -80,16 +78,14 @@ include LAYOUT_PATH . "/head.php";
                                                 <tbody>
                                                     <?php if (empty($inquiries)): ?>
                                                         <tr>
-                                                            <td colspan="8" class="text-center text-muted">No inquiries found.</td>
+                                                            <td colspan="6" class="text-center text-muted">No submissions found.</td>
                                                         </tr>
                                                     <?php endif; ?>
                                                     <?php foreach ($inquiries as $inquiry): ?>
                                                         <tr>
                                                             <td><?= htmlspecialchars($inquiry["name"]) ?></td>
-                                                            <td><?= htmlspecialchars($inquiry["phone"]) ?></td>
-                                                            <td><?= htmlspecialchars(ucwords(str_replace('_', ' ', $inquiry["service"]))) ?></td>
-                                                            <td><?= htmlspecialchars($inquiry["event_date"]) ?></td>
-                                                            <td><?= htmlspecialchars($inquiry["address"]) ?></td>
+                                                            <td><?= htmlspecialchars($inquiry["email"]) ?></td>
+                                                            <td><?= htmlspecialchars($inquiry["mobile"]) ?></td>
                                                             <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?= htmlspecialchars($inquiry["message"]) ?></td>
                                                             <td><?= htmlspecialchars(date("Y-m-d H:i:s", strtotime($inquiry["created_at"]))) ?></td>
                                                             <td>

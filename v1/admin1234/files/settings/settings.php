@@ -40,6 +40,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
+    if (
+        isset($_FILES["site_logo"]) &&
+        is_array($_FILES["site_logo"]) &&
+        $_FILES["site_logo"]["error"] !== UPLOAD_ERR_NO_FILE
+    ) {
+        $uploadResult = handleSiteLogoUpload($_FILES["site_logo"]);
+        if (!$uploadResult["success"]) {
+            $errors[] = $uploadResult["error"];
+        } else {
+            $newSettings["logo"] = $uploadResult["relative_path"];
+        }
+    }
+
     if (empty($errors)) {
         if (save_site_settings($newSettings)) {
             $settings = load_site_settings();
@@ -80,7 +93,7 @@ include LAYOUT_PATH . "/head.php";
                             <h1 class="page-title">Settings</h1>
                             <div>
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="<?= file_url("dashboard") ?>">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="<?= file_url("dashboard/dashboard.php") ?>">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Settings</li>
                                 </ol>
                             </div>
@@ -157,6 +170,16 @@ include LAYOUT_PATH . "/head.php";
                                                                 </option>
                                                             <?php endforeach; ?>
                                                         </select>
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label">Logo</label>
+                                                        <?php if (!empty($settings["logo"])): ?>
+                                                            <div class="mb-2">
+                                                                <img src="<?= asset_url($settings["logo"]) ?>" alt="Logo" style="max-width: 180px; max-height: 80px;">
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        <input type="file" name="site_logo" class="form-control" accept="image/png,image/jpeg,image/gif,image/svg+xml">
+                                                        <small class="text-muted">Upload a PNG, JPG, GIF, or SVG file (max 3 MB).</small>
                                                     </div>
                                                     <div class="form-group mb-3">
                                                         <label class="form-label">Favicon</label>

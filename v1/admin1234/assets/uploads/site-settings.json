@@ -1,5 +1,5 @@
 {
-    "title": "Admin",
+    "title": "Admin - Balancing Carbon",
     "description": "",
     "keywords": "",
     "timezone": "Asia/Kolkata",
@@ -12,6 +12,6 @@
     "smtp_password": "j1zaa2V=Fn=5",
     "smtp_encryption": "tls",
     "smtp_enabled": true,
-    "favicon": "",
-    "logo": "uploads/branding/logo_6a3206ae71c489.05532302.png"
+    "favicon": "uploads/branding/favicon_6a59d31c8e9488.15592571.png",
+    "logo": "uploads/branding/logo_6a59d22fe60912.14993457.png"
 }

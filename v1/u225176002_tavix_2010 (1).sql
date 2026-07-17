@@ -18,8 +18,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u225176002_tavix_2010`
+-- Database: `carbon`
 --
+
+CREATE DATABASE IF NOT EXISTS `carbon` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `carbon`;
 
 -- --------------------------------------------------------
 
@@ -54,11 +57,9 @@ INSERT INTO `admin_users` (`id`, `username`, `password`, `email`, `created_at`, 
 CREATE TABLE `inquiries` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `service` varchar(100) NOT NULL,
-  `address` text NOT NULL,
-  `event_date` date NOT NULL,
-  `message` text DEFAULT NULL,
+  `email` varchar(150) NOT NULL,
+  `mobile` varchar(50) NOT NULL,
+  `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -66,10 +67,8 @@ CREATE TABLE `inquiries` (
 -- Dumping data for table `inquiries`
 --
 
-INSERT INTO `inquiries` (`id`, `name`, `phone`, `service`, `address`, `event_date`, `message`, `created_at`) VALUES
-(22, 'Raghav Sharma', '07876200060', 'theme_party_events', 'dasdasda', '2026-06-19', 'cgychgchggh', '2026-06-17 11:10:32'),
-(23, 'Raghav Sharma', '07876200060', 'theme_party_events', 'dasdasda', '2026-06-19', 'cvcvghjcvgcgh', '2026-06-17 11:11:34'),
-(24, 'Raghav Sharma', '07876200060', 'social_events', 'dasdasda', '2026-06-18', 'tydtydyt', '2026-06-17 11:13:27');
+INSERT INTO `inquiries` (`id`, `name`, `email`, `mobile`, `message`, `created_at`) VALUES
+(1, 'Sample Contact', 'sample@example.com', '9876543210', 'Sample contact form submission.', '2026-07-17 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -165,7 +164,7 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `inquiries`
 --
 ALTER TABLE `inquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `listing_items`

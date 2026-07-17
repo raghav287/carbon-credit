@@ -187,11 +187,15 @@ if (!defined("APP_ROOT")) {
                 "image/gif" => "gif",
                 "image/x-icon" => "ico",
                 "image/vnd.microsoft.icon" => "ico",
+                "application/octet-stream" => "ico",
             ];
 
             $mimeType = null;
             if (function_exists("finfo_open")) {
-                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $finfoFlag = defined("FILEINFO_MIME_TYPE")
+                    ? FILEINFO_MIME_TYPE
+                    : (defined("FINFO_MIME_TYPE") ? FINFO_MIME_TYPE : 16);
+                $finfo = finfo_open($finfoFlag);
                 if ($finfo !== false) {
                     $mimeType = finfo_file($finfo, $file["tmp_name"]);
                     finfo_close($finfo);
@@ -247,6 +251,8 @@ if (!defined("APP_ROOT")) {
                 ];
             }
 
+            @chmod($targetPath, 0644);
+
             return [
                 "success" => true,
                 "relative_path" => "uploads/branding/" . $filename,
@@ -262,6 +268,107 @@ if (!defined("APP_ROOT")) {
                 return asset_url($settings["logo"]);
             }
             return asset_url("images/brand/logo-white.png");
+        }
+    }
+
+    if (!function_exists("handleSiteLogoUpload")) {
+        function handleSiteLogoUpload(array $file): array
+        {
+            $maxSize = 3 * 1024 * 1024; // 3 MB
+
+            if ($file["error"] === UPLOAD_ERR_NO_FILE) {
+                return [
+                    "success" => false,
+                    "error" => "No logo file provided.",
+                ];
+            }
+            if ($file["error"] !== UPLOAD_ERR_OK) {
+                return [
+                    "success" => false,
+                    "error" => "Logo upload failed (code {$file["error"]}).",
+                ];
+            }
+            if (!is_uploaded_file($file["tmp_name"])) {
+                return [
+                    "success" => false,
+                    "error" => "The uploaded logo is invalid.",
+                ];
+            }
+            if ($file["size"] > $maxSize) {
+                return [
+                    "success" => false,
+                    "error" => "Logo must be 3 MB or less.",
+                ];
+            }
+
+            $allowed = [
+                "image/png" => "png",
+                "image/jpeg" => "jpg",
+                "image/gif" => "gif",
+                "image/svg+xml" => "svg",
+            ];
+
+            $mimeType = null;
+            if (function_exists("finfo_open")) {
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                if ($finfo !== false) {
+                    $mimeType = finfo_file($finfo, $file["tmp_name"]);
+                    finfo_close($finfo);
+                }
+            }
+            if ($mimeType === null && function_exists("mime_content_type")) {
+                $mimeType = mime_content_type($file["tmp_name"]);
+            }
+
+            $extension =
+                $mimeType !== null && isset($allowed[$mimeType])
+                    ? $allowed[$mimeType]
+                    : null;
+
+            if ($extension === null) {
+                $legacyExtension = strtolower(
+                    pathinfo($file["name"], PATHINFO_EXTENSION),
+                );
+                if (in_array($legacyExtension, ["png", "jpg", "jpeg", "gif", "svg"])) {
+                    $extension = $legacyExtension === "jpeg" ? "jpg" : $legacyExtension;
+                }
+            }
+
+            if ($extension === null) {
+                return [
+                    "success" => false,
+                    "error" => "Only PNG, JPG, GIF, and SVG files are allowed for the logo.",
+                ];
+            }
+
+            $uploadDir = ASSETS_PATH . "/uploads/branding";
+            if (
+                !is_dir($uploadDir) &&
+                !mkdir($uploadDir, 0775, true) &&
+                !is_dir($uploadDir)
+            ) {
+                return [
+                    "success" => false,
+                    "error" => "Unable to create upload directory for logos.",
+                ];
+            }
+
+            $filename = sprintf("%s.%s", uniqid("logo_", true), $extension);
+            $targetPath = $uploadDir . "/" . $filename;
+
+            if (!move_uploaded_file($file["tmp_name"], $targetPath)) {
+                return [
+                    "success" => false,
+                    "error" => "Unable to save the uploaded logo.",
+                ];
+            }
+
+            @chmod($targetPath, 0644);
+
+            return [
+                "success" => true,
+                "relative_path" => "uploads/branding/" . $filename,
+            ];
         }
     }
 

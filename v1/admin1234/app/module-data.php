@@ -365,7 +365,7 @@ function getInquiries(): array
 {
     $rows = tryFetchRows(
         getModuleConnection(),
-        "SELECT id, name, phone, service, address, event_date, message, created_at FROM inquiries ORDER BY created_at DESC",
+        "SELECT id, name, email, mobile, message, created_at FROM inquiries ORDER BY created_at DESC",
     );
     return $rows !== [] ? $rows : [];
 }
