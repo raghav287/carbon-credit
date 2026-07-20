@@ -197,20 +197,20 @@ include LAYOUT_PATH . "/head.php";
                                                         <label class="form-label">From Name</label>
                                                         <input type="text" name="from_name" class="form-control"
                                                                value="<?= htmlspecialchars($settings["from_name"] ?? "") ?>"
-                                                               placeholder="e.g., Your Organization">
+                                                               placeholder="e.g., Balancing Carbon">
                                                     </div>
                                                     <div class="form-group mb-3">
                                                         <label class="form-label">From Email</label>
                                                         <input type="email" name="from_email" class="form-control"
                                                                value="<?= htmlspecialchars($settings["from_email"] ?? "") ?>"
-                                                               placeholder="e.g., no-reply@yourdomain.com">
+                                                               placeholder="e.g., no-reply@balancingcarbon.com">
                                                     </div>
                                                     <div class="form-group mb-3">
                                                         <label class="form-label">Admin Notification Email</label>
                                                         <input type="email" name="admin_email" class="form-control"
                                                                value="<?= htmlspecialchars($settings["admin_email"] ?? "") ?>"
-                                                               placeholder="e.g., admin@yourdomain.com">
-                                                        <small class="text-muted">This email will receive new registration notifications</small>
+                                                               placeholder="e.g., info@balancingcarbon.com">
+                                                        <small class="text-muted">This email will receive new contact form notifications.</small>
                                                     </div>
                                                 </div>
                                             </div>

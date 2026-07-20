@@ -215,6 +215,239 @@ function saveContactInquiry($connection, array $columns, string $name, string $e
     return mysqli_query($connection, $sql) !== false;
 }
 
+function loadContactMailSettings(): array
+{
+    $defaults = [
+        "from_name" => "Balancing Carbon",
+        "from_email" => "no-reply@balancingcarbon.com",
+        "admin_email" => "info@balancingcarbon.com",
+        "smtp_host" => "",
+        "smtp_port" => "587",
+        "smtp_username" => "",
+        "smtp_password" => "",
+        "smtp_encryption" => "tls",
+        "smtp_enabled" => false,
+    ];
+
+    foreach (["admin", "admin1234"] as $adminDirectory) {
+        $adminInitPath = __DIR__ . "/{$adminDirectory}/app/init.php";
+        if (is_file($adminInitPath)) {
+            require_once $adminInitPath;
+            break;
+        }
+    }
+
+    if (function_exists("load_site_settings")) {
+        return array_merge(
+            $defaults,
+            array_intersect_key(load_site_settings(), $defaults),
+        );
+    }
+
+    $settingsPath = "";
+    foreach (["admin", "admin1234"] as $adminDirectory) {
+        $candidatePath = __DIR__ . "/{$adminDirectory}/assets/uploads/site-settings.json";
+        if (is_file($candidatePath)) {
+            $settingsPath = $candidatePath;
+            break;
+        }
+    }
+
+    if (!is_file($settingsPath)) {
+        return $defaults;
+    }
+
+    $decoded = json_decode((string) file_get_contents($settingsPath), true);
+    if (!is_array($decoded)) {
+        return $defaults;
+    }
+
+    return array_merge($defaults, array_intersect_key($decoded, $defaults));
+}
+
+function sanitizeMailHeader(string $value): string
+{
+    return trim(str_replace(["\r", "\n"], "", $value));
+}
+
+function encodeMailSubject(string $subject): string
+{
+    return "=?UTF-8?B?" . base64_encode($subject) . "?=";
+}
+
+function buildContactMailMessage(string $body): string
+{
+    return str_replace("\n", "\r\n", trim($body)) . "\r\n";
+}
+
+function smtpRead($socket): string
+{
+    $response = "";
+    while (($line = fgets($socket, 515)) !== false) {
+        $response .= $line;
+        if (isset($line[3]) && $line[3] === " ") {
+            break;
+        }
+    }
+
+    return $response;
+}
+
+function smtpCommand($socket, string $command, array $expectedCodes): string
+{
+    if ($command !== "") {
+        fwrite($socket, $command . "\r\n");
+    }
+
+    $response = smtpRead($socket);
+    $code = (int) substr($response, 0, 3);
+    if (!in_array($code, $expectedCodes, true)) {
+        throw new RuntimeException("SMTP command failed: {$command} | {$response}");
+    }
+
+    return $response;
+}
+
+function sendViaSmtp(array $settings, string $to, string $subject, string $body, ?string $replyTo = null): bool
+{
+    $host = trim((string) ($settings["smtp_host"] ?? ""));
+    $port = (int) ($settings["smtp_port"] ?? 587);
+    $username = trim((string) ($settings["smtp_username"] ?? ""));
+    $password = (string) ($settings["smtp_password"] ?? "");
+    $encryption = strtolower(trim((string) ($settings["smtp_encryption"] ?? "tls")));
+    $fromEmail = sanitizeMailHeader((string) ($settings["from_email"] ?? ""));
+    $fromName = sanitizeMailHeader((string) ($settings["from_name"] ?? ""));
+
+    if ($host === "" || $port <= 0 || $fromEmail === "") {
+        return false;
+    }
+
+    $transportHost = $encryption === "ssl" ? "ssl://{$host}" : $host;
+    $socket = @fsockopen($transportHost, $port, $errno, $errstr, 20);
+    if (!$socket) {
+        throw new RuntimeException("SMTP connection failed: {$errstr} ({$errno})");
+    }
+
+    try {
+        stream_set_timeout($socket, 20);
+        smtpCommand($socket, "", [220]);
+        smtpCommand($socket, "EHLO " . ($_SERVER["SERVER_NAME"] ?? "localhost"), [250]);
+
+        if ($encryption === "tls") {
+            smtpCommand($socket, "STARTTLS", [220]);
+            if (!stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
+                throw new RuntimeException("Unable to enable SMTP TLS encryption.");
+            }
+            smtpCommand($socket, "EHLO " . ($_SERVER["SERVER_NAME"] ?? "localhost"), [250]);
+        }
+
+        if ($username !== "") {
+            smtpCommand($socket, "AUTH LOGIN", [334]);
+            smtpCommand($socket, base64_encode($username), [334]);
+            smtpCommand($socket, base64_encode($password), [235]);
+        }
+
+        smtpCommand($socket, "MAIL FROM:<{$fromEmail}>", [250]);
+        smtpCommand($socket, "RCPT TO:<{$to}>", [250, 251]);
+        smtpCommand($socket, "DATA", [354]);
+
+        $headers = [
+            "From: {$fromName} <{$fromEmail}>",
+            "To: <{$to}>",
+            "Subject: " . encodeMailSubject($subject),
+            "MIME-Version: 1.0",
+            "Content-Type: text/plain; charset=UTF-8",
+            "Content-Transfer-Encoding: 8bit",
+            "Date: " . date(DATE_RFC2822),
+        ];
+        if ($replyTo !== null && filter_var($replyTo, FILTER_VALIDATE_EMAIL) !== false) {
+            $headers[] = "Reply-To: <" . sanitizeMailHeader($replyTo) . ">";
+        }
+
+        $data = implode("\r\n", $headers) . "\r\n\r\n" . buildContactMailMessage($body);
+        $data = preg_replace("/^\./m", "..", $data);
+        fwrite($socket, $data . "\r\n.\r\n");
+        smtpCommand($socket, "", [250]);
+        smtpCommand($socket, "QUIT", [221]);
+    } finally {
+        fclose($socket);
+    }
+
+    return true;
+}
+
+function sendContactMail(array $settings, string $to, string $subject, string $body, ?string $replyTo = null): bool
+{
+    $to = sanitizeMailHeader($to);
+    if (filter_var($to, FILTER_VALIDATE_EMAIL) === false) {
+        return false;
+    }
+
+    if (!empty($settings["smtp_enabled"])) {
+        return sendViaSmtp($settings, $to, $subject, $body, $replyTo);
+    }
+
+    $fromEmail = sanitizeMailHeader((string) ($settings["from_email"] ?? ""));
+    $fromName = sanitizeMailHeader((string) ($settings["from_name"] ?? ""));
+    $headers = [
+        "From: {$fromName} <{$fromEmail}>",
+        "MIME-Version: 1.0",
+        "Content-Type: text/plain; charset=UTF-8",
+    ];
+    if ($replyTo !== null && filter_var($replyTo, FILTER_VALIDATE_EMAIL) !== false) {
+        $headers[] = "Reply-To: <" . sanitizeMailHeader($replyTo) . ">";
+    }
+
+    return mail($to, encodeMailSubject($subject), buildContactMailMessage($body), implode("\r\n", $headers));
+}
+
+function notifyContactSubmission(string $name, string $email, string $mobile, string $message): void
+{
+    $settings = loadContactMailSettings();
+    $adminEmail = trim((string) ($settings["admin_email"] ?? ""));
+
+    $adminBody = <<<MAIL
+New contact form enquiry received.
+
+Name: {$name}
+Email: {$email}
+Mobile: {$mobile}
+
+Message:
+{$message}
+MAIL;
+
+    $userBody = <<<MAIL
+Dear {$name},
+
+Thank you for contacting Balancing Carbon. We have received your enquiry and our team will get back to you shortly.
+
+Your submitted message:
+{$message}
+
+Regards,
+Balancing Carbon
+MAIL;
+
+    try {
+        if (!sendContactMail($settings, $email, "We received your enquiry", $userBody)) {
+            error_log("Contact user email was not sent.");
+        }
+    } catch (Throwable $e) {
+        error_log("Contact user email send failure: " . $e->getMessage());
+    }
+
+    if ($adminEmail !== "") {
+        try {
+            if (!sendContactMail($settings, $adminEmail, "New contact enquiry from {$name}", $adminBody, $email)) {
+                error_log("Contact admin email was not sent.");
+            }
+        } catch (Throwable $e) {
+            error_log("Contact admin email send failure: " . $e->getMessage());
+        }
+    }
+}
+
 try {
     $connection = openContactConnection();
 
@@ -230,6 +463,10 @@ try {
         error_log("Contact form submission failed: " . mysqli_error($connection));
     }
     mysqli_close($connection);
+
+    if ($saved) {
+        notifyContactSubmission($name, $email, $mobile, $message);
+    }
 
     contactRedirect($saved ? "1" : "0");
 } catch (Throwable $e) {
