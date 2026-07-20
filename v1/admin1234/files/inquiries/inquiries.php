@@ -4,35 +4,9 @@ require_once APP_ROOT . "/app/auth.php";
 requireAdminLogin();
 require_once APP_ROOT . "/app/module-data.php";
 
-function deleteInquiryDirectly(int $id): bool
-{
-    if ($id <= 0) {
-        return false;
-    }
-
-    try {
-        $connection = getSashDBConnection();
-        if ($connection === null) {
-            error_log("Inquiry direct delete failed: database connection unavailable.");
-            return false;
-        }
-
-        $stmt = $connection->prepare("DELETE FROM `inquiries` WHERE `id` = ? LIMIT 1");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $deleted = $stmt->affected_rows > 0;
-        $stmt->close();
-        $connection->close();
-        return $deleted;
-    } catch (Throwable $e) {
-        error_log("Inquiry direct delete failed for id {$id}: {$e->getMessage()}");
-        return false;
-    }
-}
-
 if (isset($_GET["delete_id"])) {
     $deleteId = filter_input(INPUT_GET, "delete_id", FILTER_VALIDATE_INT);
-    $deleted = $deleteId !== null && $deleteId !== false && deleteInquiryDirectly($deleteId);
+    $deleted = $deleteId !== null && $deleteId !== false && deleteInquiry($deleteId);
 
     header("Location: " . file_url("inquiries/inquiries.php") . "?deleted=" . ($deleted ? "1" : "0"));
     exit();
@@ -43,7 +17,7 @@ if (($_SERVER["REQUEST_METHOD"] ?? "GET") === "POST" && isset($_POST["delete_inq
     $deleted = false;
 
     if ($inquiryId !== null && $inquiryId !== false && $inquiryId > 0) {
-        $deleted = deleteInquiryDirectly($inquiryId);
+        $deleted = deleteInquiry($inquiryId);
     }
 
     if (!$deleted) {
