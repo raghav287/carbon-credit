@@ -413,7 +413,7 @@ function deleteInquiry(int $id): bool
     }
 
     try {
-        $stmt = $connection->prepare("DELETE FROM inquiries WHERE id = ?");
+        $stmt = $connection->prepare("DELETE FROM `inquiries` WHERE `id` = ? LIMIT 1");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $affected = $stmt->affected_rows;
@@ -421,6 +421,47 @@ function deleteInquiry(int $id): bool
         return $affected > 0;
     } catch (\mysqli_sql_exception $e) {
         error_log("Inquiry delete failed: {$e->getMessage()}");
+    }
+
+    try {
+        $safeId = (int) $id;
+        $connection->query("DELETE FROM `inquiries` WHERE `id` = {$safeId} LIMIT 1");
+        return $connection->affected_rows > 0;
+    } catch (\mysqli_sql_exception $e) {
+        error_log("Inquiry delete fallback failed: {$e->getMessage()}");
+        return false;
+    }
+}
+
+function deleteInquiryByDetails(
+    string $name,
+    string $email,
+    string $mobile,
+    string $message,
+    string $createdAt
+): bool {
+    $connection = getModuleConnection();
+    if ($connection === null || $name === "" || $email === "" || $createdAt === "") {
+        return false;
+    }
+
+    try {
+        $stmt = $connection->prepare(
+            "DELETE FROM `inquiries`
+             WHERE `name` = ?
+               AND `email` = ?
+               AND `mobile` = ?
+               AND `message` = ?
+               AND `created_at` = ?
+             LIMIT 1"
+        );
+        $stmt->bind_param("sssss", $name, $email, $mobile, $message, $createdAt);
+        $stmt->execute();
+        $affected = $stmt->affected_rows;
+        $stmt->close();
+        return $affected > 0;
+    } catch (\mysqli_sql_exception $e) {
+        error_log("Inquiry detail delete failed: {$e->getMessage()}");
         return false;
     }
 }

@@ -3,6 +3,63 @@ require_once dirname(__DIR__, 2) . "/app/init.php";
 require_once APP_ROOT . "/app/auth.php";
 requireAdminLogin();
 require_once APP_ROOT . "/app/module-data.php";
+
+function deleteInquiryDirectly(int $id): bool
+{
+    if ($id <= 0) {
+        return false;
+    }
+
+    try {
+        $connection = getSashDBConnection();
+        if ($connection === null) {
+            error_log("Inquiry direct delete failed: database connection unavailable.");
+            return false;
+        }
+
+        $stmt = $connection->prepare("DELETE FROM `inquiries` WHERE `id` = ? LIMIT 1");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $deleted = $stmt->affected_rows > 0;
+        $stmt->close();
+        $connection->close();
+        return $deleted;
+    } catch (Throwable $e) {
+        error_log("Inquiry direct delete failed for id {$id}: {$e->getMessage()}");
+        return false;
+    }
+}
+
+if (isset($_GET["delete_id"])) {
+    $deleteId = filter_input(INPUT_GET, "delete_id", FILTER_VALIDATE_INT);
+    $deleted = $deleteId !== null && $deleteId !== false && deleteInquiryDirectly($deleteId);
+
+    header("Location: " . file_url("inquiries/inquiries.php") . "?deleted=" . ($deleted ? "1" : "0"));
+    exit();
+}
+
+if (($_SERVER["REQUEST_METHOD"] ?? "GET") === "POST" && isset($_POST["delete_inquiry"])) {
+    $inquiryId = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
+    $deleted = false;
+
+    if ($inquiryId !== null && $inquiryId !== false && $inquiryId > 0) {
+        $deleted = deleteInquiryDirectly($inquiryId);
+    }
+
+    if (!$deleted) {
+        $deleted = deleteInquiryByDetails(
+            trim((string) ($_POST["name"] ?? "")),
+            trim((string) ($_POST["email"] ?? "")),
+            trim((string) ($_POST["mobile"] ?? "")),
+            trim((string) ($_POST["message"] ?? "")),
+            trim((string) ($_POST["created_at"] ?? ""))
+        );
+    }
+
+    header("Location: " . file_url("inquiries/inquiries.php") . "?deleted=" . ($deleted ? "1" : "0"));
+    exit();
+}
+
 $pageTitle = "Inquiries";
 $inquiries = getInquiries();
 include LAYOUT_PATH . "/head.php";
@@ -44,13 +101,15 @@ include LAYOUT_PATH . "/head.php";
                                 </ol>
                             </div>
                         </div>
-                        <?php if (isset($_GET["deleted"])): ?>
-                            <div class="alert alert-<?= $_GET["deleted"] === "1"
+                        <?php $deleteStatus = $_GET["deleted"] ?? ""; ?>
+                        <?php if ($deleteStatus !== ""): ?>
+                            <div class="alert alert-<?= $deleteStatus === "1"
                                 ? "success"
-                                : "danger" ?>" data-autohide="4000">
-                                <?= $_GET["deleted"] === "1"
+                                : "danger" ?> alert-dismissible fade show" role="alert" data-autohide="4000">
+                                <?= $deleteStatus === "1"
                                     ? "Inquiry deleted successfully."
                                     : "Unable to delete the inquiry right now." ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php endif; ?>
                         <!-- PAGE-HEADER END -->
@@ -89,12 +148,9 @@ include LAYOUT_PATH . "/head.php";
                                                             <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?= htmlspecialchars($inquiry["message"]) ?></td>
                                                             <td><?= htmlspecialchars(date("Y-m-d H:i:s", strtotime($inquiry["created_at"]))) ?></td>
                                                             <td>
-                                                                <form method="post" action="<?= file_url("inquiries/delete") ?>" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this inquiry?');">
-                                                                    <input type="hidden" name="id" value="<?= (int) $inquiry["id"] ?>">
-                                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                                        <i class="fe fe-trash"></i>
-                                                                    </button>
-                                                                </form>
+                                                                <a href="<?= htmlspecialchars(file_url("inquiries/inquiries.php") . "?delete_id=" . (int) $inquiry["id"], ENT_QUOTES, "UTF-8") ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this inquiry?');">
+                                                                    <i class="fe fe-trash"></i>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>

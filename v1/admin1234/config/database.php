@@ -2,10 +2,17 @@
 declare(strict_types=1);
 
 // Allow configuration via environment variables for portability across hosts.
+$isLocalHost =
+    empty($_SERVER["HTTP_HOST"]) ||
+    in_array($_SERVER["HTTP_HOST"], ["localhost", "127.0.0.1"], true) ||
+    str_starts_with($_SERVER["HTTP_HOST"], "localhost:");
+
 $host = getenv("DB_HOST") ?: "localhost";
-$user = getenv("DB_USER") ?: "root";
-$pass = getenv("DB_PASS") !== false ? getenv("DB_PASS") : "";
-$db = getenv("DB_NAME") ?: "carbon";
+$user = getenv("DB_USER") ?: ($isLocalHost ? "root" : "u586615155_balanccarbon");
+$pass = getenv("DB_PASS") !== false
+    ? getenv("DB_PASS")
+    : ($isLocalHost ? "" : "|gZ9@76!W6k:");
+$db = getenv("DB_NAME") ?: ($isLocalHost ? "carbon" : "u586615155_balanccarbon");
 $port = (int) (getenv("DB_PORT") ?: 3306);
 
 /**
@@ -23,8 +30,9 @@ function getSashDBConnection(): ?\mysqli
         [$host, $user, $pass, $db, $port],
     ];
 
-    if (getenv("DB_USER") === false && $user === "root") {
+    if (getenv("DB_USER") === false) {
         $candidates[] = ["localhost", "u586615155_balanccarbon", "|gZ9@76!W6k:", "u586615155_balanccarbon", 3306];
+        $candidates[] = ["localhost", "root", "", "carbon", 3306];
     }
 
     foreach ($candidates as [$candidateHost, $candidateUser, $candidatePass, $candidateDb, $candidatePort]) {

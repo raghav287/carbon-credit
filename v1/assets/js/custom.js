@@ -1,9 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const contactAlert = document.querySelector("[data-contact-alert]");
+  if (contactAlert) {
+    window.setTimeout(() => {
+      contactAlert.classList.add("is-hiding");
+      window.setTimeout(() => contactAlert.remove(), 350);
+    }, 4000);
+  }
+
+  if (
+    window.location.search.includes("sent=") ||
+    window.location.search.includes("flash=")
+  ) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+
   const menuButton = document.querySelector("#menuToggle");
   const navigation = document.querySelector("#mainNavigation");
 
   if (!menuButton || !navigation) {
-    console.error("Menu button or navigation not found.");
     return;
   }
 

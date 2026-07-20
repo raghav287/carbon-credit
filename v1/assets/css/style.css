@@ -3976,6 +3976,36 @@ p {
   font-size: 13px;
 }
 
+.contact-form-alert {
+  margin-bottom: 18px;
+  padding: 13px 15px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  opacity: 1;
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.contact-form-alert.is-hiding {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.contact-form-alert.success {
+  border: 1px solid rgb(45 87 48 / 22%);
+  background-color: rgb(45 87 48 / 9%);
+  color: var(--color-primary);
+}
+
+.contact-form-alert.error {
+  border: 1px solid rgb(186 59 45 / 22%);
+  background-color: rgb(186 59 45 / 9%);
+  color: var(--color-error);
+}
+
 .contact-form {
   display: grid;
   gap: 20px;

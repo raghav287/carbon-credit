@@ -1,3 +1,17 @@
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+$contactFlash = $_SESSION["contact_flash"] ?? "";
+$contactFlashToken = $_SESSION["contact_flash_token"] ?? "";
+$requestFlashToken = $_GET["flash"] ?? "";
+if ($contactFlashToken === "" || !hash_equals((string) $contactFlashToken, (string) $requestFlashToken)) {
+    $contactFlash = "";
+}
+unset($_SESSION["contact_flash"]);
+unset($_SESSION["contact_flash_token"]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -196,7 +210,17 @@
                         </p>
                     </div>
 
-                    <form class="contact-form" action="send-contact.php" method="POST">
+                    <?php if ($contactFlash === "1"): ?>
+                        <div class="contact-form-alert success" data-contact-alert>
+                            Thank you. Your enquiry has been submitted successfully.
+                        </div>
+                    <?php elseif ($contactFlash === "0"): ?>
+                        <div class="contact-form-alert error" data-contact-alert>
+                            Sorry, your enquiry could not be submitted right now. Please try again.
+                        </div>
+                    <?php endif; ?>
+
+                    <form class="contact-form" action="send-contact" method="POST">
                         <!-- Name -->
                         <div class="form-group">
                             <label for="contactName">

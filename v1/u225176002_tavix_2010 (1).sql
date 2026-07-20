@@ -55,12 +55,13 @@ INSERT INTO `admin_users` (`id`, `username`, `password`, `email`, `created_at`, 
 --
 
 CREATE TABLE `inquiries` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `email` varchar(150) NOT NULL,
   `mobile` varchar(50) NOT NULL,
   `message` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -133,12 +134,6 @@ ALTER TABLE `admin_users`
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `inquiries`
---
-ALTER TABLE `inquiries`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `listing_items`
 --
 ALTER TABLE `listing_items`
@@ -159,12 +154,6 @@ ALTER TABLE `profiles`
 --
 ALTER TABLE `admin_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `inquiries`
---
-ALTER TABLE `inquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `listing_items`
